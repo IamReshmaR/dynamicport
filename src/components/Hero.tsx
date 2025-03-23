@@ -1,78 +1,103 @@
+import React, { useState } from 'react';
+import { Github, Linkedin, Mail } from 'lucide-react';
+import TypeWriter from './TypeWriter';
+import Transition from './Transition';
 
-import { ArrowDown } from "lucide-react";
-import Transition from "./Transition";
+const Hero: React.FC = () => {
+  const [showDescription, setShowDescription] = useState(false);
+  const [showSocial, setShowSocial] = useState(false);
+  const [showButtons, setShowButtons] = useState(false);
 
-const Hero = () => {
-  const scrollToAbout = () => {
-    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
-  
+
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-background/0" />
-      </div>
-      
-      <div className="max-w-7xl mx-auto px-6 text-center">
-        <Transition animation="fade" delay={300}>
-          <p className="text-sm md:text-base font-medium uppercase tracking-wider mb-4">Hello, I'm</p>
-        </Transition>
-        
-        <Transition animation="scale" delay={500} className="mb-6">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">
-            Creative Designer & Developer
-          </h1>
-        </Transition>
-        
-        <Transition animation="fade" delay={800} className="max-w-2xl mx-auto">
-          <p className="text-muted-foreground text-lg md:text-xl mb-12">
-            I create elegant digital experiences with a focus on simplicity, usability, and aesthetic excellence.
-          </p>
-        </Transition>
-        
-        <Transition animation="scale" delay={1100}>
-          <div className="inline-block">
-            <button
-              onClick={scrollToAbout}
-              className="animate-subtle-pulse flex items-center justify-center w-12 h-12 rounded-full border border-border bg-background/80 backdrop-blur-sm hover:bg-primary hover:text-primary-foreground transition-all duration-300 ease-apple"
-              aria-label="Scroll to About section"
-            >
-              <ArrowDown size={20} />
-            </button>
-          </div>
-        </Transition>
-      </div>
-      
-      <div className="absolute bottom-10 left-0 right-0 flex justify-center animate-fade-in opacity-0" style={{ animationDelay: '1.5s', animationFillMode: 'forwards' }}>
-        <div className="flex space-x-4">
-          <a 
-            href="https://github.com" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="opacity-70 hover:opacity-100 transition-opacity duration-300"
-            aria-label="GitHub Profile"
-          >
-            GitHub
-          </a>
-          <a 
-            href="https://linkedin.com" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="opacity-70 hover:opacity-100 transition-opacity duration-300"
-            aria-label="LinkedIn Profile"
-          >
-            LinkedIn
-          </a>
-          <a 
-            href="mailto:example@example.com" 
-            className="opacity-70 hover:opacity-100 transition-opacity duration-300"
-            aria-label="Email"
-          >
-            Email
-          </a>
+    <div className="min-h-[70vh] flex flex-col justify-center bg-black text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        {/* Main Content */}
+        <div className="max-w-3xl mx-auto">
+          <Transition animation="fade">
+            <h1 className="text-4xl sm:text-5xl font-bold mb-8">
+              <TypeWriter
+                text="Welcome to My Data Science Portfolio"
+                delay={50}
+                onComplete={() => setShowDescription(true)}
+              />
+            </h1>
+          </Transition>
+
+          {showDescription && (
+            <Transition animation="slide-up">
+              <div className="text-lg sm:text-xl text-gray-300 mb-12">
+                <TypeWriter
+                  text="I'm a Data & Analytics Engineer with a passion for transforming raw data into powerful insights."
+                  delay={30}
+                  onComplete={() => {
+                    setShowButtons(true);
+                    setShowSocial(true);
+                  }}
+                />
+                <br />
+                <TypeWriter
+                  text="With a strong foundation in Python, SQL, and data visualization tools, I build scalable solutions and integrate generative AI to supercharge analytics workflows."
+                  delay={25}
+                />
+              </div>
+            </Transition>
+          )}
+
+          {/* Navigation Buttons */}
+          {showButtons && (
+            <Transition animation="slide-up" delay={100}>
+              <div className="flex flex-wrap gap-4 mb-12">
+                <button
+                  onClick={() => scrollToSection('about')}
+                  className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-full 
+                    backdrop-blur-sm border border-white/10 transition-all duration-300 
+                    hover:border-white/30 hover:scale-105"
+                >
+                  About Me
+                </button>
+              </div>
+            </Transition>
+          )}
+          
+          {/* Social Links */}
+          {showSocial && (
+            <Transition animation="fade" delay={200}>
+              <div className="flex space-x-8">
+                <a 
+                  href="https://github.com/IamReshmaR" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-gray-300 transition-colors transform hover:scale-110"
+                >
+                  <Github size={28} />
+                </a>
+                <a 
+                  href="https://www.linkedin.com/in/reshmarajan3590" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-gray-300 transition-colors transform hover:scale-110"
+                >
+                  <Linkedin size={28} />
+                </a>
+                <a 
+                  href="mailto:reshmarajan3590@gmail.com" 
+                  className="text-white hover:text-gray-300 transition-colors transform hover:scale-110"
+                >
+                  <Mail size={28} />
+                </a>
+              </div>
+            </Transition>
+          )}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

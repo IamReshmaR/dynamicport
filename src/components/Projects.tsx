@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from "react";
 import ProjectCard from "./ProjectCard";
 import Transition from "./Transition";
@@ -34,7 +33,7 @@ const Projects = () => {
       title: "COVID-19 Data Analysis Dashboard",
       description: "Interactive Tableau dashboard visualizing global COVID-19 data trends, vaccination rates, and regional impact analysis.",
       image: "https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      link: "https://public.tableau.com/app/profile/reshma.rajan",
+      link: "https://github.com/IamReshmaR/covid19-analysis",
       tags: ["Tableau", "Data Visualization", "COVID-19", "Healthcare"]
     },
     {
@@ -48,24 +47,24 @@ const Projects = () => {
       title: "Customer Segmentation Analysis",
       description: "Used clustering algorithms to segment customers based on purchasing behavior and demographic data for targeted marketing campaigns.",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-      link: "https://public.tableau.com/app/profile/reshma.rajan",
-      tags: ["Python", "K-Means", "Tableau", "Marketing Analytics"]
+      link: "https://github.com/IamReshmaR/customer-segmentation",
+      tags: ["Python", "K-Means", "Tableau"]
     }
   ];
   
   return (
-    <section id="projects" ref={sectionRef} className="section bg-muted/50">
+    <section id="projects" ref={sectionRef} className="section bg-black text-white">
       <div className="text-center mb-16">
         <Transition animation="fade">
-          <span className="inline-block py-1 px-3 text-xs rounded-full bg-primary/10 text-primary mb-4">
+          <span className="inline-block py-1 px-3 text-xs rounded-full bg-white/10 text-white mb-4">
             Featured Work
           </span>
         </Transition>
         <Transition animation="slide-up" delay={200}>
-          <h2 className="section-title">Data Science Projects</h2>
+          <h2 className="section-title text-white">Data Science Projects</h2>
         </Transition>
         <Transition animation="fade" delay={400}>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-gray-300 max-w-2xl mx-auto">
             A selection of my recent data science projects, showcasing my analytical skills and problem-solving abilities.
           </p>
         </Transition>
